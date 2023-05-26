@@ -10,15 +10,12 @@ import lombok.ToString;
 public class Person {
 
     @Getter
-    @Setter
     private String name;
 
     @Getter
-    @Setter
     private int age;
 
     @Getter
-    @Setter
     private String country;
 
 }
