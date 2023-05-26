@@ -8,37 +8,26 @@ import java.util.stream.Collectors;
 
 public class Streams {
 
-    List<Person> people;
-
-    public Streams(List<Person> people) {
-        this.people = people;
-
-        System.out.println("Lista de personas: ");
-        this.people.forEach(System.out::println);
-        System.out.println("\n");
-    }
-
-    public void run(){
+    public void run(List<Person> people) {
         // Filtrar los que viven en méxico y contarlos
-        long howManyPeopleWhoLiveInMexico = howManyPeopleWhoLiveInMexico();
+        long howManyPeopleWhoLiveInMexico = howManyPeopleWhoLiveInMexico(people);
         System.out.println("En México viven: " + howManyPeopleWhoLiveInMexico + " personas.");
 
         // Listar a quienes viven en méxico
-        List<Person> peopleWhoLiveInMexico = peopleWhoLiveInMexico();
+        List<Person> peopleWhoLiveInMexico = peopleWhoLiveInMexico(people);
         peopleWhoLiveInMexico.forEach(System.out::println);
         System.out.println("\n");
 
         // Transformar Lista a un mapa <País, Cantidad de personas>
-        Map<String, Long> peoplePerCountry = howManyLiveByCountry();
-        peoplePerCountry.forEach((c, p) ->
-                System.out.println("De la lista de personas, " + p + " personas viven en " + c ));
+        Map<String, Long> peoplePerCountry = howManyLiveByCountry(people);
+        peoplePerCountry.forEach((c, p) -> System.out.println("De la lista de personas, " + p + " personas viven en " + c));
     }
 
     /***
      * Filtrar los que viven en méxico y contarlos
      * @return long
      ***/
-    public long howManyPeopleWhoLiveInMexico() {
+    public long howManyPeopleWhoLiveInMexico(List<Person> people) {
         return people.stream().filter(p -> p.getCountry().equals("MX")).count();
     }
 
@@ -46,7 +35,7 @@ public class Streams {
      * // Listar a quienes viven en méxico
      * @return List of Persons
      */
-    public List<Person> peopleWhoLiveInMexico() {
+    public List<Person> peopleWhoLiveInMexico(List<Person> people) {
         return people.stream().filter(p -> p.getCountry().equals("MX")).toList();
     }
 
@@ -54,7 +43,7 @@ public class Streams {
      * Transformar Lista a un mapa <País, Cantidad de personas>
      * @return Map of how many people live in each country
      */
-    public Map<String, Long> howManyLiveByCountry() {
+    public Map<String, Long> howManyLiveByCountry(List<Person> people) {
         return people.stream().collect(Collectors.groupingBy(Person::getCountry, Collectors.counting()));
     }
 }

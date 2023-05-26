@@ -5,16 +5,20 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor @ToString
+@AllArgsConstructor
+@ToString
 public class Person {
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private String name;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private int age;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private String country;
 
 }

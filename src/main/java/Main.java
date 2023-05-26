@@ -1,7 +1,7 @@
 import Model.Person;
+import Skills.Streams;
 
 import java.util.List;
-import Skills.Streams;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,8 +20,8 @@ public class Main {
                 new Person("Héctor", 26, "MX")
         );
 
-        Streams streams = new Streams(people);
-        streams.run();
+        Streams streams = new Streams();
+        streams.run(people);
 
     }
 }
